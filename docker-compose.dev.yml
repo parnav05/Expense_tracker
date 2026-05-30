@@ -1,0 +1,37 @@
+version: '3.9'
+
+# Development override — hot reload, source mounts, no prod builds
+# Usage: docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+
+services:
+
+  mysql:
+    ports:
+      - "3306:3306"   # expose for local DB clients (TablePlus, DBeaver)
+
+  backend:
+    build:
+      target: deps     # only install deps, don't copy src (mounted below)
+    command: ["npx", "nodemon", "src/server.js"]
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./backend/src:/app/src:ro
+      - ./backend/.env:/app/.env:ro
+    ports:
+      - "5000:5000"
+      - "9229:9229"   # Node.js debugger port
+
+  frontend:
+    build: ~            # skip image build — use CRA dev server instead
+    image: node:20-alpine
+    working_dir: /app
+    command: ["npm", "start"]
+    environment:
+      REACT_APP_API_URL: http://localhost:5000/api
+      CHOKIDAR_USEPOLLING: "true"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
