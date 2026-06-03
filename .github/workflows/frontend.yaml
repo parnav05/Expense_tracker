@@ -37,6 +37,12 @@ jobs:
         run: npm audit --audit-level=critical || true
         working-directory: ./frontend
 
+      - name: build 
+        run: npm run build
+        working-directory: ./frontend
+
+      
+
       
 
            
