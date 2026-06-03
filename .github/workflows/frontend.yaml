@@ -22,8 +22,8 @@ jobs:
         working-directory: ./frontend
 
       - name: Run linters
-        uses: npm run lint
-        
+        run: npm run lint
+        working-directory: ./frontend
 
       
 
