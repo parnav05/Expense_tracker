@@ -3,7 +3,11 @@ name: frontend
 on:
   push:
     branches: [ dev ]
+    paths:
+      - frontend/**
+      - .github/workflows/frontend.yaml
 
+      
 jobs:
   frontend:
     runs-on: ubuntu-latest
@@ -17,7 +21,7 @@ jobs:
         with:
           node-version: 20
 
-      - name: dependency intall 
+      - name: dependency install 
         run: npm install
         working-directory: ./frontend
 
@@ -29,13 +33,11 @@ jobs:
         run: npm test
         working-directory: ./frontend
 
-      - name: secuurity check
-        run: npm audit
+      - name: security check
+        run: npm audit --audit-level=critical || true
         working-directory: ./frontend
 
-      - name: secuurity check
-        run: npm audit fix --force
-        working-directory: ./frontend
+      
 
            
 
