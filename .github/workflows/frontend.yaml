@@ -33,6 +33,10 @@ jobs:
         run: npm audit
         working-directory: ./frontend
 
+      - name: secuurity check
+        run: npm audit
+        working-directory: ./frontend
+
            
 
 
