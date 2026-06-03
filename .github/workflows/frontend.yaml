@@ -1,0 +1,30 @@
+name: frontend 
+
+on:
+  push:
+    branches: [ dev ]
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: checkout code 
+        uses: actions/checkout@v4
+
+      - name: node setup
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: dependency isntall 
+        run: npm install
+        working-directory: ./frontend
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        
+
+      
+
+
