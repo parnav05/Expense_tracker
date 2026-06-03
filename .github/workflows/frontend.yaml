@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: 20
 
-      - name: dependency isntall 
+      - name: dependency intall 
         run: npm install
         working-directory: ./frontend
 
@@ -25,6 +25,14 @@ jobs:
         run: npm run lint
         working-directory: ./frontend
 
-      
+      - name: run tests
+        run: npm test
+        working-directory: ./frontend
+
+      - name: secuurity check
+        run: npm audit
+        working-directory: ./frontend
+
+           
 
 
