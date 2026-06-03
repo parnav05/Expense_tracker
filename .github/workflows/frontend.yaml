@@ -22,7 +22,7 @@ jobs:
         working-directory: ./frontend
 
       - name: Run linters
-        uses: wearerequired/lint-action@v2
+        uses: npm run lint
         
 
       
