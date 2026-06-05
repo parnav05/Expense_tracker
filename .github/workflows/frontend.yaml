@@ -22,7 +22,7 @@ jobs:
           node-version: 20
 
       - name: dependency install 
-        run: npm ci
+        run: npm install
         working-directory: ./frontend
 
       - name: Run linters
