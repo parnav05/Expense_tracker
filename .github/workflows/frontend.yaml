@@ -33,15 +33,27 @@ jobs:
         run: npm test
         working-directory: ./frontend
 
-      - name: security check
+      - name: dependency check
         run: npm audit --audit-level=critical || true
         working-directory: ./frontend
 
       - name: build 
         run: npm run build
         working-directory: ./frontend
-
       
+      - name: Build Docker Image
+        run: docker build -t frontend:latest .
+        working-directory: ./frontend
+
+      - name: Scan Docker Image
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: frontend:latest
+          format: table
+          exit-code: 1
+          severity: CRITICAL,HIGH     
+
+
 
       
 
