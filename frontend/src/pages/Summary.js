@@ -40,6 +40,7 @@ const Summary = () => {
       finally { setLoading(false); }
     };
     load();
+  // eslint-disable-next-line react-hooks/exhaustive-deps  
   }, [year, month]);
 
   const yearTotals = monthly.reduce((acc, m) => ({
