@@ -12,10 +12,11 @@ ARG REACT_APP_APP_NAME=ExpenseTracker
 ENV REACT_APP_API_URL=$REACT_APP_API_URL
 ENV REACT_APP_APP_NAME=$REACT_APP_APP_NAME
 
+RUN apk update && apk upgrade
 RUN npm run build
 
 # ─── Stage 2: Serve with Nginx ────────────────────────────────────────────────
-FROM nginx:1.25-alpine AS production
+FROM nginx:1.27-alpine AS production
 
 # Remove default nginx config
 RUN rm /etc/nginx/conf.d/default.conf
@@ -26,6 +27,7 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 # Copy built assets
 COPY --from=build /app/build /usr/share/nginx/html
 
+RUN apk update && apk upgrade
 # Security: non-root (nginx runs as nginx user by default in alpine)
 RUN chown -R nginx:nginx /usr/share/nginx/html && \
     chown -R nginx:nginx /var/cache/nginx && \
