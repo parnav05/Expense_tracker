@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { categoryAPI } from 'frontend/src/services/api.js';
+import { categoryAPI } from '../../services/api';
 import toast from 'react-hot-toast';
 
 const Categories = () => {

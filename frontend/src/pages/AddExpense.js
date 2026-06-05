@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { expenseAPI, categoryAPI } from 'frontend/src/services/api.js';
+import { expenseAPI, categoryAPI } from '../../services/api';
 import { format } from 'date-fns';
 import toast from 'react-hot-toast';
 
