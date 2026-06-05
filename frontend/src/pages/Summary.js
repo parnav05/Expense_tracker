@@ -15,6 +15,7 @@ const Summary = () => {
   const years = Array.from({ length: 5 }, (_, i) => new Date().getFullYear() - i);
   const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const load = async () => {
       setLoading(true);
