@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { expenseAPI } from '../../services/api';
+import { expenseAPI } from 'frontend/src/services/api.js';
 import { format } from 'date-fns';
 import toast from 'react-hot-toast';
 
