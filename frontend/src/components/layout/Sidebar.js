@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useAuth } from './frontend/src/context/AuthContext.js';
+import { useAuth } from '../../context/AuthContext.js';
 
 const navItems = [
   { path: '/dashboard', icon: '◉', label: 'Dashboard' },

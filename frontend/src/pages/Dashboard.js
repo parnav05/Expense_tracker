@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { expenseAPI } from 'frontend/src/services/api.js';
-import { useAuth } from './frontend/src/context/AuthContext.js';
+import { useAuth } from '../context/AuthContext.js';
 import { format } from 'date-fns';
 import toast from 'react-hot-toast';
 
