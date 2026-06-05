@@ -40,6 +40,9 @@ jobs:
       - name: build 
         run: npm run build
         working-directory: ./frontend
+
+      - name: update runner 
+        run: apt-get update && apt-get upgrade -y        
       
       - name: Build Docker Image
         run: docker build -t frontend:latest .
