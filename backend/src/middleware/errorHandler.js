@@ -1,6 +1,6 @@
 const logger = require('../utils/logger');
 
-const errorHandler = (err, req, res, next) => {
+const errorHandler = (err, req, res,) => {
   logger.error(`${err.name}: ${err.message}`, { stack: err.stack });
 
   // Sequelize validation error
