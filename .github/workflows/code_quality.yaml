@@ -22,4 +22,4 @@ jobs:
           
 
       - name: Run ESLint
-        run: npx eslint .
+        run: npm run lint
