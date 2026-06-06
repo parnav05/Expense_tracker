@@ -3,9 +3,11 @@ name: docker_workflow
 on:
   workflow_call:
 
-jobs:
-  docker_build_push:
-    runs-on: ubuntu-latest
+on:
+  workflow_call:
+    secrets:
+      DOCKERHUB_TOKEN:
+        required: true
 
     steps:
       - name: Checkout Code

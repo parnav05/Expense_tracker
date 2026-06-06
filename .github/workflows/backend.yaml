@@ -21,5 +21,9 @@ jobs:
     uses: ./.github/workflows/app_build.yaml
 
   docker_build-push:
-    needs: Application_build
-    uses: ./.github/workflows/docker_build.yaml
+  needs: Application_build
+  uses: ./.github/workflows/docker_build.yaml
+  secrets:
+    DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+  with:
+    username: ${{ vars.DOCKERHUB_USERNAME }}
