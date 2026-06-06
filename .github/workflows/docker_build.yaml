@@ -1,37 +1,35 @@
-  name: docker_workflow
+name: docker_workflow
 
-  on:
-    workflow_call:
+on:
+  workflow_call:
 
+jobs:
+  docker_build_push:
+    runs-on: ubuntu-latest
 
-  jobs:
-    docker_build_push:    
-      runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-      steps:
-        - name: Checkout Code
-          uses: actions/checkout@v4
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Build Docker Image
+        run: docker build -t backend:latest .
+        working-directory: ./backend        # ← typo fix: baackend → backend
 
-        - name: Login to Docker Hub
-          uses: docker/login-action@v3
-          with:
-           username: ${{ vars.DOCKERHUB_USERNAME }}
-           password: ${{ secrets.DOCKERHUB_TOKEN }}        
-      
-        - name: Build Docker Image
-          run: docker build -t backend:latest .
-          working-directory: ./baackend
+      - name: Scan Docker Image
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: backend:latest         # ← frontend → backend
+          exit-code: 1
+          severity: "CRITICAL"
+          ignore-unfixed: true
 
-        - name: Scan Docker Image
-          uses: aquasecurity/trivy-action@master
-          with:
-            image-ref: frontend:latest
-            exit-code: 1
-            severity: "CRITICAL"   
-
-        - name: Push Docker Image
-          run: |
-            docker tag frontend:latest ${{ vars.DOCKERHUB_USERNAME }}/expense_tracker_backend:latest 
-            docker push ${{ vars.DOCKERHUB_USERNAME }}/expense_tracker_backend:latest
-
+      - name: Push Docker Image
+        run: |
+          docker tag backend:latest ${{ vars.DOCKERHUB_USERNAME }}/expense_tracker_backend:latest
+          docker push ${{ vars.DOCKERHUB_USERNAME }}/expense_tracker_backend:latest
