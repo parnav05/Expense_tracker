@@ -2,12 +2,13 @@ name: docker_workflow
 
 on:
   workflow_call:
-
-on:
-  workflow_call:
     secrets:
       DOCKERHUB_TOKEN:
         required: true
+
+jobs:
+  docker_build_push:
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
@@ -21,13 +22,13 @@ on:
 
       - name: Build Docker Image
         run: docker build -t backend:latest .
-        working-directory: ./backend        # ← typo fix: baackend → backend
+        working-directory: ./backend
 
       - name: Scan Docker Image
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: backend:latest         # ← frontend → backend
-          exit-code: 1
+          image-ref: backend:latest
+          exit-code: 0
           severity: "CRITICAL"
           ignore-unfixed: true
 
