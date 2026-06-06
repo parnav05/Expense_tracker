@@ -1,6 +1,9 @@
 const request = require('supertest');
 
-// Mock sequelize before importing app
+// ← JWT Secret set karo sabse pehle
+process.env.JWT_SECRET = 'test_secret_key_minimum_32_characters_here';
+process.env.NODE_ENV = 'test';
+
 jest.mock('../src/config/database', () => ({
   sequelize: {
     authenticate: jest.fn().mockResolvedValue(true),
@@ -34,7 +37,12 @@ describe('Auth API', () => {
 
   describe('POST /api/auth/register', () => {
     it('should register a new user', async () => {
-      const mockUser = { id: 1, name: 'Test User', email: 'test@test.com', toJSON: () => ({ id: 1, name: 'Test User', email: 'test@test.com' }) };
+      const mockUser = {
+        id: 1,
+        name: 'Test User',
+        email: 'test@test.com',
+        toJSON: () => ({ id: 1, name: 'Test User', email: 'test@test.com' }),
+      };
 
       User.findOne.mockResolvedValue(null);
       User.create.mockResolvedValue(mockUser);
@@ -94,7 +102,9 @@ describe('Auth API', () => {
     });
 
     it('should return 400 for missing fields', async () => {
-      const res = await request(app).post('/api/auth/login').send({ email: 'test@test.com' });
+      const res = await request(app).post('/api/auth/login').send({
+        email: 'test@test.com',
+      });
       expect(res.status).toBe(400);
     });
   });
