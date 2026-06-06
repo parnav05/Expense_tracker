@@ -5,7 +5,7 @@
 
 
   jobs:
-    docker_build&push:    
+    docker_build_push:    
       runs-on: ubuntu-latest
 
       steps:
