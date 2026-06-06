@@ -8,7 +8,7 @@ RUN npm ci --only=production
 FROM node:20-alpine AS test
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci
+RUN npm install
 COPY . .
 RUN npm test
 
