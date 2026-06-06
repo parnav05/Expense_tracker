@@ -8,11 +8,9 @@ jobs:
   secret_scan:
     uses: ./.github/workflows/secret_scan.yaml
 
-
   code_quality:
     needs: secret_scan
     uses: ./.github/workflows/code_quality.yaml
-
 
   code_test:
     needs: code_quality
