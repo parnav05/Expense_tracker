@@ -3,30 +3,23 @@ name: backend
 on:
   push:
     branches: [dev]
-      
-
 
 jobs:
   secret_scan:
-    uses: ./.github/workflows/secret _scan.yaml
+    uses: ./.github/workflows/secret_scan.yaml
 
   code_quality:
     needs: secret_scan
     uses: ./.github/workflows/code_quality.yaml
 
-
-
   code_test:
     needs: code_quality
     uses: ./.github/workflows/test_code.yaml
-
 
   Application_build:
     needs: code_test
     uses: ./.github/workflows/app_build.yaml
 
-
   docker_build-push:
-    needs: application_build
+    needs: Application_build
     uses: ./.github/workflows/docker_build.yaml
-
