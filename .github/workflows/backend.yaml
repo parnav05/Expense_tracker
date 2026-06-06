@@ -8,24 +8,24 @@ on:
 
 jobs:
   secret_scan:
-    uses: ./.github/workflows/secret_scan.yaml
+    uses: .github/workflows/secret_scan.yaml
 
   code_quality:
     needs: secret_scan
-    uses: ./.github/workflows/code_quality.yaml
+    uses: .github/workflows/code_quality.yaml
 
 
   code_test:
     needs: code_quality
-    uses: ./.github/workflows/test_code.yaml
+    uses: .github/workflows/test_code.yaml
 
 
   Application_build:
     needs: code_test
-    uses: ./.github/workflows/app_build.yaml
+    uses: .github/workflows/app_build.yaml
 
 
   docker_build-push:
     needs: application_build
-    uses: ./.github/workflows/docker_build.yaml
+    uses: .github/workflows/docker_build.yaml
 
