@@ -6,7 +6,7 @@ on:
 
 jobs:
   secret_scan:
-    uses: ./.github/workflows/secret_scan.yaml
+    uses: ./.github/workflows/secret _scan.yaml
 
   code_quality:
     needs: secret_scan
