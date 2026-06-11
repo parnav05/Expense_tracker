@@ -31,6 +31,6 @@ jobs:
           username: ${{ secrets.EC2_SSH_USERNAME }}
           key: ${{ secrets.KEY }}
           script: |
-            echo: "hay login successfull"
-            mkdir -p DevOps
+            docker-compose up --build -d
+            
       
