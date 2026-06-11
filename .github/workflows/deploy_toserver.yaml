@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: code checkout
-        uses: action/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Copy docker-compose.yml
         uses: appleboy/scp-action@v0.1.7
