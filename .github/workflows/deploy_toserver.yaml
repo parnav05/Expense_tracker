@@ -9,9 +9,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      name: ssh to server
-      uses: appleboy/ssh-action@v1
-      with:
+      - name: ssh to server
+        uses: appleboy/ssh-action@v1
+        with:
           host: ${{ secrets.EC2_SSH_HOST }}
           username: ${{ secrets.EC2_SSH_USERNAME }}
           password: ${{ secrets.KEY }}
