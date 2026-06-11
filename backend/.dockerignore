@@ -5,5 +5,5 @@ npm-debug.log
 .gitignore
 coverage
 logs
-*.test.js
+* test.js
 README.md
