@@ -20,7 +20,7 @@ jobs:
           username: ${{ secrets.EC2_SSH_USERNAME }}
           key: ${{ secrets.KEY }}
 
-          source: "docker-compose.yml"
+          source: "docker-compose.yml,database/*"
           target: "/home/ec2-user/DevOps"
 
 
@@ -33,6 +33,6 @@ jobs:
           script: |
             cd ~/DevOps
             docker-compose up --build -d
-            
+
             
       
