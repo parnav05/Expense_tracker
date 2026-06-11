@@ -1,7 +1,9 @@
 name: deploy  to server 
 
 on:
-  workflow call:
+  push:
+    branches:
+      dev
 
 jobs:
   deploy:
