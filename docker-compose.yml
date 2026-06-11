@@ -46,10 +46,7 @@ services:
 
   # ── Backend API ───────────────────────────────────────────────────────────────
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-      target: production
+    image: parnav05/expense_tracker_backend:latest
     container_name: expense-backend
     restart: unless-stopped
     environment:
@@ -81,13 +78,7 @@ services:
 
   # ── Frontend ──────────────────────────────────────────────────────────────────
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-      target: production
-      args:
-        REACT_APP_API_URL: /api
-        REACT_APP_APP_NAME: ExpenseTracker
+    image: parnav05/expense_tracker_frontend:latest
     container_name: expense-frontend
     restart: unless-stopped
     ports:
