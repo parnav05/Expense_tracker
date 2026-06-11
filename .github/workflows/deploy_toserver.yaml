@@ -31,6 +31,8 @@ jobs:
           username: ${{ secrets.EC2_SSH_USERNAME }}
           key: ${{ secrets.KEY }}
           script: |
+            cd ~/DevOps
             docker-compose up --build -d
+            
             
       
