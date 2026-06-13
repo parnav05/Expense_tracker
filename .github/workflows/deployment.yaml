@@ -3,6 +3,7 @@ name: deploy to server
 on:
   push:
     branches: [dev]
+    
 
 jobs:
   frontend:
@@ -15,7 +16,7 @@ jobs:
     secrets:
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
 
-  code_test:
+  deployment:
     needs: [frontend,backend]
     uses: ./.github/workflows/deploy.yaml
 
