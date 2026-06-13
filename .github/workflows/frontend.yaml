@@ -3,8 +3,8 @@ name: frontend
 on:
   workflow_call:
   secrets:
-      DOCKERHUB_TOKEN:
-        required: true
+    DOCKERHUB_TOKEN:
+    required: true
 
 
       
