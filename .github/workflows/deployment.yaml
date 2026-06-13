@@ -20,8 +20,9 @@ jobs:
     needs: [frontend,backend]
     uses: ./.github/workflows/deploy.yaml
     secrets:
-      key: ${{ secrets.key }}
-    
+      host: ${{ secrets.EC2_SSH_HOST }}
+      username: ${{ secrets.EC2_SSH_USERNAME }}
+      key: ${{ secrets.KEY }}
 
 
       
