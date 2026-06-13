@@ -2,8 +2,8 @@ name: deploy  to server
 
 on:
   push:
-    branches:
-      dev
+    branches: [dev]
+      
 
 jobs:
   deploy:
@@ -32,7 +32,19 @@ jobs:
           key: ${{ secrets.KEY }}
           script: |
             cd ~/DevOps
-            docker-compose up --build -d
+            cat > .env << EOF
+            MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}
+            DB_NAME=${{ secrets.DB_NAME }}
+            DB_USER=${{ secrets.DB_USER }}
+            DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+            JWT_SECRET=${{ secrets.JWT_SECRET }}
+            JWT_EXPIRES_IN=7d
+            NODE_ENV=production
+            EOF
+
+            docker compose pull
+            docker compose down
+            docker compose up -d
 
             
       
