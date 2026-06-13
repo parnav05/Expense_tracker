@@ -1,7 +1,10 @@
 name: frontend 
 
 on:
-  workflow_call
+  workflow_call:
+  secrets:
+      DOCKERHUB_TOKEN:
+        required: true
 
       
 jobs:
