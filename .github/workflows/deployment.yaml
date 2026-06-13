@@ -1,0 +1,19 @@
+name: deploy to server
+
+on:
+  push:
+    branches: [dev]
+
+jobs:
+  frontend:
+    uses: ./.github/workflows/frontend.yaml
+
+  backend:
+    uses: ./.github/workflows/backend.yaml
+
+  code_test:
+    needs: [frontend,backend]
+    uses: ./.github/workflows/deploy.yaml
+
+
+      

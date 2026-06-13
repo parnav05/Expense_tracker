@@ -1,11 +1,7 @@
 name: frontend 
 
 on:
-  push:
-    branches: [ main ]
-    paths:
-      - frontend/**
-      - .github/workflows/frontend.yaml
+  workflow_call
 
       
 jobs:
@@ -60,8 +56,8 @@ jobs:
 
       - name: Push Docker Image
         run: |
-          docker tag frontend:latest ${{ vars.DOCKERHUB_USERNAME }}/expense_tracker_frontend:latest 
-          docker push ${{ vars.DOCKERHUB_USERNAME }}/expense_tracker_frontend:latest
+          docker tag frontend:latest ${{ vars.DOCKERHUB_USERNAME }}/expense_tracker_frontend:v1
+          docker push ${{ vars.DOCKERHUB_USERNAME }}/expense_tracker_frontend:v1
 
 
 

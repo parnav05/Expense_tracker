@@ -1,20 +1,17 @@
-name: deploy  to server 
+name: deploy  
 
 on:
-  push:
-    branches: [dev]
+  workflow_call:
       
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: code checkout
         uses: actions/checkout@v4
-
+        
       - name: Copy docker-compose.yml
         uses: appleboy/scp-action@v0.1.7
-
         with:
           host: ${{ secrets.EC2_SSH_HOST }}
           username: ${{ secrets.EC2_SSH_USERNAME }}
@@ -43,8 +40,7 @@ jobs:
             EOF
 
             docker compose pull
-            docker compose down
-            docker compose up -d
+            docker compose up -d --force-recreate
 
             
       
