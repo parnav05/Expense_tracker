@@ -19,6 +19,9 @@ jobs:
   deployment:
     needs: [frontend,backend]
     uses: ./.github/workflows/deploy.yaml
+    secrets:
+      key: ${{ secrets.key }}
+    
 
 
       
