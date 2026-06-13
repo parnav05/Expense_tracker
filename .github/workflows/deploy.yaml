@@ -5,6 +5,10 @@ on:
     secrets:
       key:
         required: true
+      EC2_SSH_HOST:
+        required: true
+      EC2_SSH_USERNAME:
+        required: true
 
       
 jobs:
