@@ -2,7 +2,7 @@ name: deploy
 
 on:
   workflow_call:
-  secrets:
+    secrets:
       key:
         required: true
 
