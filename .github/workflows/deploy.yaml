@@ -3,9 +3,6 @@ name: deploy
 on:
   workflow_call:
     secrets:
-      on:
-  workflow_call:
-    secrets:
       KEY:
         required: true
       EC2_SSH_HOST:
