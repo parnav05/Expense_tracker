@@ -3,7 +3,7 @@ name: deploy
 on:
   workflow_call:
     secrets:
-      key:
+      KEY:
         required: true
       EC2_SSH_HOST:
         required: true
