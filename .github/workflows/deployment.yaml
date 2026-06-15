@@ -22,7 +22,7 @@ jobs:
     secrets:
       EC2_SSH_HOST: ${{ secrets.EC2_SSH_HOST }}
       EC2_SSH_USERNAME: ${{ secrets.EC2_SSH_USERNAME }}
-      EY: ${{ secrets.KEY }}
+      KEY: ${{ secrets.KEY }}
 
 
       
