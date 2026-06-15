@@ -21,12 +21,12 @@ jobs:
       - name: Copy docker-compose.yml
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ secrets.EC2_SSH_HOST }}
-          username: ${{ secrets.EC2_SSH_USERNAME }}
-          key: ${{ secrets.KEY }}
+          EC2_SSH_HOST: ${{ secrets.EC2_SSH_HOST }}
+          EC2_SSH_USERNAME: ${{ secrets.EC2_SSH_USERNAME }}
+          KEY: ${{ secrets.KEY }}
 
           source: "docker-compose.yml,database/*"
-          target: "/home/ec2-user/DevOps"
+          target: "/home/ubuntu/DevOps"    
 
 
       - name: ssh to server
