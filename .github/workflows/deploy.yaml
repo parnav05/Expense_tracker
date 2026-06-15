@@ -32,10 +32,11 @@ jobs:
       - name: ssh to server
         uses: appleboy/ssh-action@v1
         with:
-          host: ${{ secrets.EC2_SSH_HOST }}
-          username: ${{ secrets.EC2_SSH_USERNAME }}
-          key: ${{ secrets.KEY }}
+          EC2_SSH_HOST: ${{ secrets.EC2_SSH_HOST }}
+          EC2_SSH_USERNAME: ${{ secrets.EC2_SSH_USERNAME }}
+          KEY: ${{ secrets.KEY }}
           script: |
+            mkdir -p DevOps
             cd ~/DevOps
             cat > .env << EOF
             MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}
