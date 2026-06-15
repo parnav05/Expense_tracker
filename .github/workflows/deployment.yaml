@@ -17,18 +17,17 @@ jobs:
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
 
   deployment:
-    deployment:
-  needs: [frontend, backend]
-  uses: ./.github/workflows/deploy.yaml
-  secrets:
-    EC2_SSH_HOST: ${{ secrets.EC2_SSH_HOST }}
-    EC2_SSH_USERNAME: ${{ secrets.EC2_SSH_USERNAME }}
-    KEY: ${{ secrets.KEY }}
-    MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
-    DB_NAME: ${{ secrets.DB_NAME }}
-    DB_USER: ${{ secrets.DB_USER }}
-    DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-    JWT_SECRET: ${{ secrets.JWT_SECRET }}
+    needs: [frontend, backend]
+    uses: ./.github/workflows/deploy.yaml
+    secrets:
+      EC2_SSH_HOST: ${{ secrets.EC2_SSH_HOST }}
+      EC2_SSH_USERNAME: ${{ secrets.EC2_SSH_USERNAME }}
+      KEY: ${{ secrets.KEY }}
+      MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+      DB_NAME: ${{ secrets.DB_NAME }}
+      DB_USER: ${{ secrets.DB_USER }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}   
 
 
 
