@@ -3,11 +3,24 @@ name: deploy
 on:
   workflow_call:
     secrets:
+      on:
+  workflow_call:
+    secrets:
       KEY:
         required: true
       EC2_SSH_HOST:
         required: true
       EC2_SSH_USERNAME:
+        required: true
+      MYSQL_ROOT_PASSWORD:
+        required: true
+      DB_NAME:
+        required: true
+      DB_USER:
+        required: true
+      DB_PASSWORD:
+        required: true
+      JWT_SECRET:
         required: true
 
       
@@ -21,9 +34,9 @@ jobs:
       - name: Copy docker-compose.yml
         uses: appleboy/scp-action@v0.1.7
         with:
-          EC2_SSH_HOST: ${{ secrets.EC2_SSH_HOST }}
-          EC2_SSH_USERNAME: ${{ secrets.EC2_SSH_USERNAME }}
-          KEY: ${{ secrets.KEY }}
+          host: ${{ secrets.EC2_SSH_HOST }}
+          username: ${{ secrets.EC2_SSH_USERNAME }}
+          key: ${{ secrets.KEY }}
 
           source: "docker-compose.yml,database/*"
           target: "/home/ubuntu/DevOps"    
@@ -32,9 +45,9 @@ jobs:
       - name: ssh to server
         uses: appleboy/ssh-action@v1
         with:
-          EC2_SSH_HOST: ${{ secrets.EC2_SSH_HOST }}
-          EC2_SSH_USERNAME: ${{ secrets.EC2_SSH_USERNAME }}
-          KEY: ${{ secrets.KEY }}
+          host: ${{ secrets.EC2_SSH_HOST }}
+          username: ${{ secrets.EC2_SSH_USERNAME }}
+          key: ${{ secrets.KEY }}
           script: |
             mkdir -p DevOps
             cd ~/DevOps
